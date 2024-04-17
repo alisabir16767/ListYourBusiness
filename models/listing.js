@@ -1,23 +1,19 @@
+const mongoose = require('mongoose');
 
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
-const listingSchema = new Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,
-        default:"https://unsplash.com/photos/a-woman-is-taking-a-picture-of-a-coral-reef-odwrd9IVBuk",
-        set: v => (!v ? "https://unsplash.com/photos/a-woman-is-taking-a-picture-of-a-coral-reef-odwrd9IVBuk" : v)
-    },
-    price:Number,
-    description: String,
-    location: String,
-    country: String
+const reviewSchema = new mongoose.Schema({
+    text: String,
+    // You can add more fields like user, rating, etc. as needed
 });
 
-const Listing = mongoose.model("Listing", listingSchema);
+const listingSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    image: String,
+    location: String,
+    country: String,
+    reviews: [reviewSchema] // Array of reviews
+});
+
+const Listing = mongoose.model('Listing', listingSchema);
 
 module.exports = Listing;

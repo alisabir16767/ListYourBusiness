@@ -6,9 +6,11 @@ const path = require("path");
 const methodOverride= require("method-override");
 const ejsMate=require("ejs-mate");
 const dotenv=require("dotenv");
+const bodyParser=require("body-parser");
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/ListYourBusiness";
-const dbUrl=process.env.ATLASDB_URL;
+
+
+const MONGO_URL = "mongodb://127.0.0.1:27017/ListYourBusiness";
 
 
 main().then(() => {
@@ -32,7 +34,6 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.get("/", (req, res) => {
     res.send("hello, i am root.");
 });
-
 app.get("/listings", async (req, res) => {
     try {
         const allListings = await Listing.find({});
@@ -140,6 +141,28 @@ app.delete("/listings/:id", async (req, res) => {
         }
         console.log(deletedListing); 
         res.redirect("/listings");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+});
+// Add review route
+app.post("/listings/:id/reviews", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { text } = req.body;
+        
+        // Find the listing by ID
+        const listing = await Listing.findById(id);
+        if (!listing) {
+            return res.status(404).send("Listing not found");
+        }
+
+        // Add the review to the listing's reviews array
+        listing.reviews.push({ text });
+        await listing.save();
+
+        res.redirect(`/listings/${id}`);
     } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");

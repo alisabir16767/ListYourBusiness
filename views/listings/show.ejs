@@ -26,4 +26,19 @@
       </div>
    </div>
    <br><br>
+
+   <!-- Review Section -->
+   <!-- Show existing reviews -->
+<h3>Reviews</h3>
+<% listing.reviews.forEach(review => { %>
+    <p><%= review.text %></p>
+<% }); %>
+
+<!-- Form to add new review -->
+<form action="/listings/<%= listing._id %>/reviews" method="POST">
+    <label for="text">Add a Review:</label>
+    <input type="text" id="text" name="text">
+    <button type="submit">Submit</button>
+</form>
+
 </body>
