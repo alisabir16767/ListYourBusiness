@@ -1,4 +1,42 @@
 <%- layout("layouts/boilerplate") -%>
+<style>
+    .team {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap; /* Allow team members to wrap onto multiple lines */
+    }
+  
+    .team-member {
+      flex-basis: calc(33.33% - 20px); /* Adjust the width of team members */
+      margin-bottom: 20px;
+      position: relative; /* Add relative positioning to contain the image */
+    }
+  
+    .team-member img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease; /* Add transition for smooth animation */
+    }
+  
+    /* Add animation on hover */
+    .team-member:hover img {
+      transform: scale(1.1); /* Scale up the image on hover */
+    }
+  
+    @media (max-width: 768px) {
+      .team-member {
+        flex-basis: calc(50% - 20px); /* Change to two columns on smaller screens */
+      }
+    }
+  
+    @media (max-width: 576px) {
+      .team-member {
+        flex-basis: 100%; /* Single column on extra small screens */
+      }
+    }
+  </style>
+  
 <br><br>
 <body>
 <header>
@@ -18,8 +56,9 @@
            <li>Customer Satisfaction</li>
        </ul>
    </section>
+   <h2>Our Team</h2>
+
    <section class="team">
-       <h2>Our Team</h2>
        <div class="team-member">
            <img src="/images/Screenshot 2024-02-29 at 11.20.58 PM copy.png" alt="Kusboo_img">
            <h3>Khusboo</h3>
@@ -31,17 +70,15 @@
            <p>CTO</p>
        </div>
        <div class="team-member">
-        <img src="<div class="team-member">
-            <img src="/images/2354ff02-c972-4e8e-a5ea-3b6736268189.jpg" alt="Gaytri_img">
-            <h3>Dhruv</h3>
-            <p>CTO</p>
+        <img src="/images/2354ff02-c972-4e8e-a5ea-3b6736268189.jpg" alt="Sahil_img">
+        <h3>Dhruv</h3>
+        <p>CTO</p>
     </div>
     <div class="team-member">
-        <img src="<div class="team-member">
-            <img src="/images/WhatsApp Image 2024-04-10 at 11.08.21 AM.jpeg" alt="Gaytri_img">
-            <h3>Sahil</h3>
-            <p>CTO</p>
-    </div>
+        <img src="    /images/WhatsApp Image 2024-04-10 at 11.08.21 AM.jpeg
+        " alt="Sahil_img">
+        <h3>Sahil</h3>
+        <p>CTO</p>
    </section>
 </main>
 

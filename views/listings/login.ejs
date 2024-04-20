@@ -1,4 +1,46 @@
 <%- layout("layouts/boilerplate") -%>
+<style>
+   .card-title{
+      text-align: center !important;
+      margin-top: 2rem;
+   }
+   .form-label{
+      margin-left: 1rem;
+   }
+  .card{
+   background-color: #B0D2DA;
+  }
+   
+   
+</style>
 <body>
-   <h1>you </h1>
+   <div class="container ">
+       <div class="row justify-content-center mt-5">
+           <div class="col-md-6">
+               <div class="card">
+                   <div class="card-body">
+                       <h5 class="card-title">Log In</h5>
+                       <form action="/login" method="POST">
+                           <div class="mb-3">
+                               <label for="username" class="form-label">Username</label>
+                               <input type="text" class="form-control" id="username" name="username" required>
+                           </div>
+                           <div class="mb-3">
+                               <label for="password" class="form-label">Password</label>
+                               <input type="password" class="form-control" id="password" name="password" required>
+                           </div>
+                           <button type="submit" class="btn btn-dark">Log In</button>
+                       </form>
+                       <div class="row justify-content-center mt-3">
+                        <div class="col-md-6">
+                            <p class="text-center">Don't have an account? <a href="/signup">Sign Up</a></p>
+                        </div>
+                    </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       
+   </div>
 </body>
+</html>

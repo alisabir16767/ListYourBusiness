@@ -63,8 +63,12 @@ app.get("/privacy",(req,res)=>{
     res.render("listings/privacy");
 })
 app.get("/login",(req,res)=>{
-    res.render("listing/login");
+    res.render("listings/login");
 })
+app.get("/signup", (req, res) => {
+    res.render("listings/signup"); 
+});
+
 
 // Create route for new listing
 app.post("/listings", async (req, res) => {
