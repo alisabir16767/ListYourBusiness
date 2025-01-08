@@ -35,7 +35,7 @@ async function connectToDatabase() {
 connectToDatabase();
 
 const sessionOptions = {
-  secret: "your_secret_key",
+  secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({
