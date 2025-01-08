@@ -1,12 +1,13 @@
 const express = require("express");
-const app = express();
+const app = express(); // Make sure this is defined first
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
-const cors = require("cors");
+const cors = require("cors"); // Ensure 'cors' is correctly imported
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -34,11 +35,16 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
-// Session options
+// Session options with MongoStore
 const sessionOptions = {
   secret: "your_secret_key", // Use a strong, secure secret key
   resave: false, // Prevent unnecessary session saving
   saveUninitialized: true, // Save new sessions even if they are not modified
+  store: MongoStore.create({
+    mongoUrl: MONGO_URL,
+    collectionName: "sessions", // Store session data in a custom collection
+    ttl: 14 * 24 * 60 * 60, // Sessions expire after 14 days
+  }),
   cookie: {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 7 days
     maxAge: 1000 * 60 * 60 * 24 * 7,
