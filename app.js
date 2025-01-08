@@ -68,7 +68,6 @@ passport.deserializeUser(User.deserializeUser());
 
 // Routes
 app.get("/", (req, res) => {
-  console.dir(req.cookies); // Debugging cookies
   res.json({ message: "Welcome to List Your Business API" });
 });
 
