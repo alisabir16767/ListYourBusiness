@@ -1,10 +1,10 @@
 const express = require("express");
-const app = express(); // Make sure this is defined first
+const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
-const cors = require("cors"); // Ensure 'cors' is correctly imported
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -14,11 +14,10 @@ const LocalStrategy = require("passport-local");
 const Listing = require("./models/listing");
 const User = require("./models/user");
 
-dotenv.config(); // Load environment variables
+dotenv.config();
 
 const MONGO_URL = process.env.ATLASDB_URL;
 
-// Debugging: Log the MongoDB URI
 console.log("MongoDB URI:", MONGO_URL);
 
 async function connectToDatabase() {
@@ -35,15 +34,14 @@ async function connectToDatabase() {
 
 connectToDatabase();
 
-// Session options with MongoStore
 const sessionOptions = {
-  secret: "your_secret_key", // Use a strong, secure secret key
-  resave: false, // Prevent unnecessary session saving
-  saveUninitialized: true, // Save new sessions even if they are not modified
+  secret: "your_secret_key",
+  resave: false,
+  saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: MONGO_URL,
-    collectionName: "sessions", // Store session data in a custom collection
-    ttl: 14 * 24 * 60 * 60, // Sessions expire after 14 days
+    collectionName: "sessions",
+    ttl: 14 * 24 * 60 * 60,
   }),
   cookie: {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 7 days
