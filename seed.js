@@ -81,5 +81,6 @@ async function seedDatabase() {
     process.exit(1);
   }
 }
+// save the data
 
 seedDatabase();
